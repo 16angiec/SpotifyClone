@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '@shared/shared.module';
 import { TracksRoutingModule } from './tracks-routing.module';
 import { TracksPageComponent } from './pages/tracks-page/tracks-page.component';
 
@@ -11,7 +12,8 @@ import { TracksPageComponent } from './pages/tracks-page/tracks-page.component';
   ],
   imports: [
     CommonModule,
-    TracksRoutingModule
+    SharedModule,
+    TracksRoutingModule,
   ]
 })
 export class TracksModule { }
