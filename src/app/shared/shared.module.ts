@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HeaderUserComponent } from './components/header-user/header-user.component';
@@ -7,8 +8,6 @@ import { CardPlayerComponent } from './components/card-player/card-player.compon
 import { SectionGenericComponent } from './components/section-generic/section-generic.component';
 import { PlayListHeaderComponent } from './components/play-list-header/play-list-header.component';
 import { PlayListBodyComponent } from './components/play-list-body/play-list-body.component';
-
-
 
 @NgModule({
   declarations: [
@@ -20,9 +19,7 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
     PlayListHeaderComponent,
     PlayListBodyComponent,
   ],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule, RouterModule],
   exports: [
     CardPlayerComponent,
     HeaderUserComponent,
@@ -31,6 +28,6 @@ import { PlayListBodyComponent } from './components/play-list-body/play-list-bod
     SideBarComponent,
     PlayListHeaderComponent,
     PlayListBodyComponent,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
