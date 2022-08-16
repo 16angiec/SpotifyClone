@@ -1,7 +1,7 @@
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,25 @@ export class TrackService {
 
   constructor(
     private httpClient: HttpClient,
-  ) {}
+  ) { }
 
+  /**
+   *
+   * @returns Devuelve todas las canciones
+   */
   getAllTracks$(): Observable<any> {
-    return this.httpClient.get(`${this.url}/tracks`)
+    return this.httpClient.get(`${this.url}/tracks`).pipe(
+      map(({ data }: any) => {
+        return data
+      })
+    )
+  }
+
+  getAllRandom$(): Observable<any> {
+    return this.httpClient.get(`${this.url}/tracks`).pipe(
+      map(({ data }: any) => {
+        return data.reverse()
+      })
+    )
   }
 }
