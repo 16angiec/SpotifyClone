@@ -1,7 +1,7 @@
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,11 @@ export class TrackService {
     return this.httpClient.get(`${this.url}/tracks`).pipe(
       map(({ data }: any) => {
         return data.reverse()
+      }),
+      catchError((err) => {
+        const { status, statusText } = err;
+        console.log('Algo paso revisame', [status, statusText])
+        return of([])
       })
     )
   }

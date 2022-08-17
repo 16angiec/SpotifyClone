@@ -17,12 +17,19 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   constructor(private trackService: TrackService) { }
 
   ngOnInit(): void {
-    this.trackService.getAllTracks$().subscribe((response: TrackModel[]) => {
-      this.mockTracksList1 = response
-    })
+    this.loadDataAll();
+    this.loadDataRandom();
+  }
 
+  async loadDataAll(): Promise <any> {
+   this.mockTracksList1 = await this.trackService.getAllTracks$().toPromise()
+  }
+
+  loadDataRandom(): void {
     this.trackService.getAllRandom$().subscribe((response: TrackModel[]) => {
       this.mockTracksList2 = response
+    }, err => {
+      console.log('Error de conexión')
     })
   }
 
