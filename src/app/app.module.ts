@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { InjectTokenInterceptor } from './core/interceptores/inject-token.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
@@ -16,7 +17,12 @@ import { AppComponent } from './app.component';
     HttpClientModule,
   ],
   providers: [
-    CookieService
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InjectTokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
